@@ -3,6 +3,7 @@ package tech.wvs.desafionubank.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tech.wvs.desafionubank.controller.dto.CustomerDto;
+import tech.wvs.desafionubank.domain.Contact;
 import tech.wvs.desafionubank.domain.Customer;
 import tech.wvs.desafionubank.service.CustomerService;
 
@@ -29,5 +30,12 @@ public class CustomerController {
     public ResponseEntity<List<Customer>> findAllCustomers() {
         var customers = customerService.findAllCustomers();
         return ResponseEntity.ok(customers);
+    }
+
+    @GetMapping(path = "/{clientId}/contatos")
+    public ResponseEntity<List<Contact>> findAllContacts(@PathVariable Long clientId) {
+       // return customerService.findAllContacts(clientId);
+        var contacts = customerService.findAllContacts(clientId);
+        return ResponseEntity.ok(contacts);
     }
 }

@@ -7,7 +7,9 @@ import tech.wvs.desafionubank.domain.Contact;
 import tech.wvs.desafionubank.domain.Customer;
 import tech.wvs.desafionubank.repository.CustomerRepository;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CustomerService {
@@ -38,5 +40,14 @@ public class CustomerService {
 
     public List<Customer> findAllCustomers() {
         return customerRepository.findAll();
+    }
+
+    public List<Contact> findAllContacts(Long clientId) {
+        var customer = customerRepository.findById(clientId);
+
+        return customer.get().getContacts()
+                .stream()
+                .map(c -> new Contact(c.getId(), c.getName(), c.getPhoneNumber(), c.getEmail()))
+                .collect(Collectors.toList());
     }
 }
