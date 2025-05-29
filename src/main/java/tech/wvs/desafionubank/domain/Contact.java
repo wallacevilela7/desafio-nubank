@@ -1,6 +1,7 @@
 package tech.wvs.desafionubank.domain;
 
 import jakarta.persistence.*;
+import tech.wvs.desafionubank.controller.dto.ContactDto;
 
 @Entity
 @Table(name = "tb_contacts")
@@ -12,9 +13,10 @@ public class Contact {
 
     private String name;
 
+    @Column(nullable = false)
     private String email;
 
-    @Column(name = "phone_number")
+    @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 
     public Contact() {
@@ -25,6 +27,12 @@ public class Contact {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
+    }
+
+    public Contact(ContactDto dto) {
+        this.name = dto.name();
+        this.email = dto.email();
+        this.phoneNumber = dto.phoneNumber();
     }
 
     public Long getId() {

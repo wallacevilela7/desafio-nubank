@@ -3,6 +3,7 @@ package tech.wvs.desafionubank.domain;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import tech.wvs.desafionubank.controller.dto.CustomerDto;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -18,8 +19,10 @@ public class Customer {
 
     private String name;
 
+    @Column(unique = true, nullable = false)
     private String email;
 
+    @Column(unique = true, nullable = false)
     private String cpf;
 
     @Column(name = "bith_date")
@@ -51,6 +54,13 @@ public class Customer {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.contacts = contacts;
+    }
+
+    public Customer(CustomerDto dto) {
+        this.name = dto.name();
+        this.email = dto.email();
+        this.cpf = dto.cpf();
+        this.birthDate = dto.birthDate();
     }
 
     public Long getId() {

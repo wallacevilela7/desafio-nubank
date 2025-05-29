@@ -6,10 +6,10 @@ spring:
     url: 'jdbc:postgresql://localhost:5432/ds-nubank'
     username: 'myuser'
     password: 'secret123buuu'
+    driver-class-name: 'org.postgresql.Driver'
 
-    jpa:
-      open-in-view: false
-      hibernate:
-        ddl-auto: 'update'
-        show-sql: true
-        dialect: 'org.hibernate.dialect.PostgreSQLDialect'
+  jpa:
+    database-platform: 'org.hibernate.dialect.PostgreSQLDialect'
+    show-sql: true
+    hibernate:
+      ddl-auto: update
