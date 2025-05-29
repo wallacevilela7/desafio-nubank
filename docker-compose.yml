@@ -1,0 +1,10 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: 'postgres-container'
+    environment:
+      - 'POSTGRES_DB=ds-nubank'
+      - 'POSTGRES_USER=myuser'
+      - 'POSTGRES_PASSWORD=secret123buuu'
+    ports:
+      - '5432:5432'
